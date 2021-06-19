@@ -25,13 +25,20 @@
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="/" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
+            <%if !model_signed_in? %>
 
-            <%= link_to "Log in ", model_session_path  , class: 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'%>
+              <%= link_to "Log in ", model_session_path  , class: 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'%>
 
-            <%= link_to "Sign up", "/models/sign_up" , class: 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'%>
+              <%= link_to "Sign up", "/models/sign_up" , class: 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'%>
 
-            <%= link_to "sign_out", destroy_model_session_path, method: :delete, class: 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'%>
 
+            <%end%>
+           <%if model_signed_in? %>
+              <%= link_to "sign_out", destroy_model_session_path, method: :delete, class: 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'%>
+
+              <%= link_to "Post_Photo",post_path, method: :get, class: 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'%>
+
+          <%end%>
 
           </div>
         </div>

@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_153013) do
+ActiveRecord::Schema.define(version: 2021_06_19_143951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "model_posts", force: :cascade do |t|
+    t.bigint "model_id", null: false
+    t.string "title"
+    t.string "content"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["model_id"], name: "index_model_posts_on_model_id"
+  end
 
   create_table "models", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +37,16 @@ ActiveRecord::Schema.define(version: 2021_05_19_153013) do
     t.index ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.bigint "model_id", null: false
+    t.string "title"
+    t.text "body"
+    t.oid "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["model_id"], name: "index_posts_on_model_id"
+  end
+
+  add_foreign_key "model_posts", "models"
+  add_foreign_key "posts", "models"
 end
