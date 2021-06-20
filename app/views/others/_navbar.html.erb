@@ -36,7 +36,9 @@
            <%if model_signed_in? %>
               <%= link_to "sign_out", destroy_model_session_path, method: :delete, class: 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'%>
 
-              <%= link_to "Post_Photo",post_path, method: :get, class: 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'%>
+              <%= link_to "Post_Photo",new_model_post_path, method: :get, class: 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'%>
+
+              <%= link_to "My Photos",model_posts_path, method: :get, class: 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'%>
 
           <%end%>
 
