@@ -15,9 +15,14 @@
 
         <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><%= link_to "edit" , edit_model_post_path(model_post) %></span>
 
-      <%end %>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"><%= link_to "delete" ,model_post_path(model_post), method: :delete%></span>
 
-      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+    <%end %>
+
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <%= button_to 'Like', model_post_likes_path(model_post), method: :post %> </span>
+
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <%= model_post.likes.count %> <%= (model_post.likes.count) == 1 ? 'Like' : 'Likes'%> </span>
+
     </div>
   </div>
 </div>

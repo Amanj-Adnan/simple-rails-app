@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_19_143951) do
+ActiveRecord::Schema.define(version: 2021_06_21_191214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "model_post_id", null: false
+    t.bigint "model_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["model_id"], name: "index_likes_on_model_id"
+    t.index ["model_post_id"], name: "index_likes_on_model_post_id"
+  end
 
   create_table "model_posts", force: :cascade do |t|
     t.bigint "model_id", null: false
@@ -47,6 +56,8 @@ ActiveRecord::Schema.define(version: 2021_06_19_143951) do
     t.index ["model_id"], name: "index_posts_on_model_id"
   end
 
+  add_foreign_key "likes", "model_posts"
+  add_foreign_key "likes", "models"
   add_foreign_key "model_posts", "models"
   add_foreign_key "posts", "models"
 end

@@ -23,11 +23,18 @@ class ModelPostsController < ApplicationController
   end
 
   def update
+    if @model_post.update(post_params)
 
+      redirect_to model_posts_path
+      puts("looooooooooooooooooooooooooooooooool")
+    else
+      render :edit
+    end
   end
 
   def destroy
-
+    @model_post.destroy
+    redirect_to model_posts_path
   end
 
 
@@ -36,7 +43,7 @@ class ModelPostsController < ApplicationController
   private
 
   def post_params
-    params.permit(:title,:content,:image)
+    params.require(:model_post).permit(:title,:content,:image)
   end
 
   def set_photo

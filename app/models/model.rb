@@ -5,5 +5,6 @@ class Model < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :model_posts
+  has_many :likes, dependent: :destroy
   validates :email, presence:  true
 end
