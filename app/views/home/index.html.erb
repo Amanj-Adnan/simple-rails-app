@@ -8,7 +8,13 @@
 <%#= render @model_posts, partial: "home/cards",collection: true , locals: {object: @model_posts} %>
 
 
-
+<div class="flex justify-center">
+  <% flash.each do |type, msg| %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+      <%= msg %>
+    </div>
+  <% end %>
+</div>
 <div class="grid grid-cols-4">
   <%= render @model_posts %>
 </div>
