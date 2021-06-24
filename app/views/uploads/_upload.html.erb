@@ -1,0 +1,18 @@
+<%if upload::tof == 'video'  %>
+  <%= video_tag upload.image_url , :size => "320x240", :controls => true , class:"object-fill h-48 w-34   lazy"%>
+
+  <%else %>
+  <%= image_tag upload.image_url , class:"object-fill h-48 w-34   lazy"%>
+<%end %>
+
+
+
+
+
+
+
+
+
+
+
+

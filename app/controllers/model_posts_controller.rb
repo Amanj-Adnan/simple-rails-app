@@ -23,7 +23,7 @@ class ModelPostsController < ApplicationController
   end
 
   def update
-    if @model_post.update(post_params)
+    if @model_post.update(get_params)
 
       redirect_to model_posts_path
       puts("looooooooooooooooooooooooooooooooool")
@@ -41,9 +41,11 @@ class ModelPostsController < ApplicationController
 
 
   private
-
-  def post_params
+  def get_params
     params.require(:model_post).permit(:title,:content,:image)
+  end
+  def post_params
+    params.permit(:title,:content,:image)
   end
 
   def set_photo
