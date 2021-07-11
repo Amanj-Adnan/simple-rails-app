@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :models
 
   root to: 'home#index'
+  get '/search', to: 'home#search'
+
 
   resources :model_posts do
     resources :likes , dependent: :destroy

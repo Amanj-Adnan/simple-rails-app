@@ -1,0 +1,39 @@
+<%unless @results.nil?%>
+  <% @results.each do |result| %>
+
+
+    <div class="p-10">
+      <!--Card 1-->
+      <div class="max-w-sm rounded overflow-hidden shadow-lg">
+        <img class="object-fill h-48 w-34 w-full  lazy"  src="<%=result.image %>" alt="Mountain">
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2"><%= result.title %></div>
+          <p class="text-gray-700 text-base">
+            <%= result.content %>
+          </p>
+        </div>
+        <div class="px-6 pt-4 pb-2">
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <%= result.email %> </span>
+          <% if current_page?(:controller => 'model_posts', :action => 'index') %>
+
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><%= link_to "edit" , edit_model_post_path(model_post) %></span>
+
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"><%= link_to "delete" ,model_post_path(model_post), method: :delete%></span>
+
+          <%end %>
+          <%if model_signed_in? %>
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <% pre_like = result.likes.find { |like| like.model_id == current_model.id} %>
+        <% if pre_like %>
+           <%= button_to 'Unlike', model_post_like_path(result, pre_like), method: :delete %>
+        <% else %>
+          <%= button_to 'Like', model_post_likes_path(result), method: :post %>
+        <% end %>
+       </span>
+          <%end%>
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <%= result.likes.count %> <%= (result.likes.count) == 1 ? 'Like' : 'Likes'%> </span>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

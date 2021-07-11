@@ -43,6 +43,10 @@
               <%= link_to "My Uploads",uploads_path, method: :get, class: 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'%>
 
           <%end%>
+            <%=form_tag(search_path, :method => "get", class: '')  do%>
+            <%= text_field_tag(:search , params[:search]) %>
+              <%= submit_tag("Search")%>
+            <%end %>
 
           </div>
         </div>
