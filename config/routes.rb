@@ -7,8 +7,14 @@ Rails.application.routes.draw do
 
   resources :model_posts do
     resources :likes , dependent: :destroy
+    resources :comments ,module: :model_posts
+  end
+
+  resources :comments  do
+    resources :comments ,module: :comments
   end
   resources :uploads
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

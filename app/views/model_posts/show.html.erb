@@ -1,0 +1,41 @@
+<div class="p-10">
+  <!--Card 1-->
+  <div class="max-w-sm rounded overflow-hidden shadow-lg">
+    <img class="object-fill h-48 w-34 w-full  lazy"  src="<%=@model_post.image %>" alt="Mountain">
+    <div class="px-6 py-4">
+      <div class="font-bold text-xl mb-2"><%= @model_post.title %></div>
+      <p class="text-gray-700 text-base">
+        <%= @model_post.content %>
+      </p>
+    </div>
+    <div class="px-6 pt-4 pb-2">
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <%= @model_post.email %> </span>
+      <% if current_page?(:controller => 'model_posts', :action => 'index') %>
+
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><%= link_to "edit" , edit_model_post_path(@model_post) %></span>
+
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"><%= link_to "delete" ,model_post_path(@model_post), method: :delete%></span>
+
+      <%end %>
+      <%if model_signed_in? %>
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <% pre_like = @model_post.likes.find { |like| like.model_id == current_model.id} %>
+        <% if pre_like %>
+           <%= button_to 'Unlike', model_post_like_path(@model_post, pre_like), method: :delete %>
+        <% else %>
+          <%= button_to 'Like', model_post_likes_path(@model_post), method: :post %>
+        <% end %>
+       </span>
+      <%end%>
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <%= @model_post.likes.count %> <%= (@model_post.likes.count) == 1 ? 'Like' : 'Likes'%> </span>
+
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">   <%= link_to "Create A Comment", new_model_post_comment_path(@model_post.id), method: :get%> </span>
+
+    </div>
+  </div>
+</div>
+
+ <% unless Comment.nil?  %>
+
+ <%= render partial: "comments/comment" , locals: { commentable: @model_post} %>
+
+ <%end%>

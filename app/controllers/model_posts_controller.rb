@@ -1,20 +1,22 @@
 class ModelPostsController < ApplicationController
   before_action :authenticate_model!
-  before_action :set_photo ,only: [:edit,:update ,:destroy]
+  before_action :set_photo ,only: [:edit,:update ,:destroy ,:show]
   def index
     @model_posts = current_model.model_posts
   end
 
   def new
   end
+  def show
 
+  end
   def create
     @new_post = current_model.model_posts.new(post_params)
     if @new_post.save
 
       redirect_to root_path
     else
-      render :show
+      render :new
     end
   end
 

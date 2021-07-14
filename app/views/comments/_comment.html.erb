@@ -1,0 +1,44 @@
+<h3 class="text-gray-700 pl-10 font-serif text-3xl font-semibold">Comments</h3>
+
+
+<div class="grid pl-12 m-1 grid-cols-3 ">
+
+
+
+  <div class="bg-gray-100 rounded-2xl ">
+    <% commentable.comments.each do |comment|%>
+      <div class="flex-col m-2 text-gray-900 text-md font-serif rounded-2xl bg-gray-200 ">
+        <div class="flex-col ">
+
+          <div class="flex ">
+            <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="image" class=" w-10 h-10 rounded-lg object-cover bg-gray-100">
+
+            <p class="text-md text-gray-700 font-serif m-1"> Comment by: </p>
+            <p class="text-md text-gray-900 font-serif m-1"><%= comment.email %></p>
+
+          </div>
+
+          <div class="m-1 p-2 grid-cols-3 ">
+            <div class="col-span-2 bg-gray-50 rounded-lg">
+              <p class="ml-1"> <%= comment.body %></p>
+            </div>
+
+          </div >
+          <div class=" flex m-1 pl-2">
+            <div class="pl-2">like </div>
+            <div class="pl-2 mt-0.5 text-sm font-sans"> 25likes </div>
+            <div class="pl-2 text-indigo-700"> <%= link_to "replay", new_comment_comment_path(comment.id), method: :get %> </div>
+
+          </div>
+          <%unless Comment.nil?%>
+          <div class="m-2 px-8 pt-2"><%= render partial: "replays/replays" , locals: { commentable: comment} %></div>
+          <% end %>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
+

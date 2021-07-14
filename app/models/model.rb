@@ -7,5 +7,6 @@ class Model < ApplicationRecord
   has_many :model_posts
   has_many :likes, dependent: :destroy
   has_many :uploads
+  has_many :comments
   validates :email, presence:  true
 end
