@@ -36,6 +36,8 @@
 
  <% unless Comment.nil?  %>
 
- <%= render partial: "comments/comment" , locals: { commentable: @model_post} %>
+
+    <%= render partial: "comments/comment" , locals: { commentable: @model_post} %>
+
 
  <%end%>

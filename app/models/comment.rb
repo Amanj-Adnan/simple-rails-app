@@ -5,4 +5,6 @@ class Comment < ApplicationRecord
   has_many :comments, as: :commentable
 
   delegate :email , to: :model
+
+
 end

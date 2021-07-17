@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_07_11_224046) do
   end
 
   create_table "models", force: :cascade do |t|
+    t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -55,16 +56,6 @@ ActiveRecord::Schema.define(version: 2021_07_11_224046) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_models_on_email", unique: true
     t.index ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
-  end
-
-  create_table "posts", force: :cascade do |t|
-    t.bigint "model_id", null: false
-    t.string "title"
-    t.text "body"
-    t.oid "image"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["model_id"], name: "index_posts_on_model_id"
   end
 
   create_table "uploads", force: :cascade do |t|
@@ -81,6 +72,5 @@ ActiveRecord::Schema.define(version: 2021_07_11_224046) do
   add_foreign_key "likes", "model_posts"
   add_foreign_key "likes", "models"
   add_foreign_key "model_posts", "models"
-  add_foreign_key "posts", "models"
   add_foreign_key "uploads", "models"
 end

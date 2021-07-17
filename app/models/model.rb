@@ -9,4 +9,5 @@ class Model < ApplicationRecord
   has_many :uploads
   has_many :comments
   validates :email, presence:  true
+  validates :name, presence:  true , uniqueness: true
 end

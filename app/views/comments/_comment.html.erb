@@ -27,7 +27,7 @@
           <div class=" flex m-1 pl-2">
             <div class="pl-2">like </div>
             <div class="pl-2 mt-0.5 text-sm font-sans"> 25likes </div>
-            <div class="pl-2 text-indigo-700"> <%= link_to "replay", new_comment_comment_path(comment.id), method: :get %> </div>
+            <div class="pl-2 text-indigo-700"> <%= link_to "replay", new_comment_comment_path(comment.id) %> </div>
 
           </div>
           <%unless Comment.nil?%>
