@@ -28,7 +28,7 @@
       <%end%>
       <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"> <%= @model_post.likes.count %> <%= (@model_post.likes.count) == 1 ? 'Like' : 'Likes'%> </span>
 
-      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">   <%= link_to "Create A Comment", new_model_post_comment_path(@model_post.id), method: :get%> </span>
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">   <%= link_to "Create A Comment", new_model_post_comment_path(@model_post.id)%> </span>
 
     </div>
   </div>
